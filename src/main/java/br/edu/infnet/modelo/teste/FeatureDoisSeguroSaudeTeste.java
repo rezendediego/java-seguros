@@ -1,35 +1,35 @@
 package br.edu.infnet.modelo.teste;
 
+import br.edu.infnet.modelo.dominio.Mensalidade;
 import br.edu.infnet.modelo.dominio.Segurado;
 import br.edu.infnet.modelo.dominio.SeguroSaude;
-import br.edu.infnet.modelo.dominio_enum.*;
+import br.edu.infnet.modelo.dominio_enum.DoencasPreexistentes;
+import br.edu.infnet.modelo.dominio_enum.ModalidadeSeguroSaude;
+import br.edu.infnet.modelo.dominio_enum.PeriodoCarencia;
+import br.edu.infnet.modelo.dominio_enum.Sexo;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-public class SeguroSaudeTeste {
-    public static String validadorSeguroSaude(SeguroSaude seguroSaude, Segurado segurado ){
-        try{
-            assertNotNull(seguroSaude.getIdSeguro());
-            assertEquals(seguroSaude.getNomeSegurado(),segurado.getNome());
-            assertEquals(seguroSaude.getTipoSeguro(), TipoSeguro.SEGURO_SAUDE);
-        }catch(AssertionError assertionError){
-            System.out.println(">>>AssertionError: Revise a proposta de Contrato: " + assertionError.getMessage());
-        }
-
-        return seguroSaude.toString();
-    }
+public class FeatureDoisSeguroSaudeTeste {
     public static void main(String[] args){
+        System.out.println("### Teste FEATURE 02 - Implementacao do metodo abstrato calcularMensalidade(valorBase) de Seguro Saude ### \n");
+
+        //Hardcoded ValorBase do Seguro Residencial
+        BigDecimal valorBaseMensalidadeSeguroSaude = new BigDecimal("1500.00");
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("Atual Valor BAse Mensalidade: "+valorBaseMensalidadeSeguroSaude);
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------");
+
+
         System.out.println("### Teste de Criacao de Seguro Saude ###");
         System.out.println("### Teste Instancia 01 ###");
         Segurado seguradoJorgeSampaoliTeste_01 = new Segurado("Jorge Sampaoli",63,"24808052");
         List<DoencasPreexistentes> doencasPreexistentesJorgeSampaoli = new ArrayList<>();
-        doencasPreexistentesJorgeSampaoli.add(DoencasPreexistentes.CARDIOVASCULARES);
         doencasPreexistentesJorgeSampaoli.add(DoencasPreexistentes.GASTROINTESTINAIS);
         doencasPreexistentesJorgeSampaoli.add(DoencasPreexistentes.PSIQUIATRICOS);
 
@@ -44,7 +44,8 @@ public class SeguroSaudeTeste {
                 doencasPreexistentesJorgeSampaoli);
 
 
-        System.out.println(validadorSeguroSaude(seguroSaude_01,seguradoJorgeSampaoliTeste_01));
+        Mensalidade mensalidadeseguradoJorgeSampaoliTeste_01 = seguroSaude_01.calcularMensalidade(valorBaseMensalidadeSeguroSaude);
+        System.out.println("FEATURE_02: O valor da mensalidade 01 de Seguro Saude será: " + mensalidadeseguradoJorgeSampaoliTeste_01.getValorMensalidade());
         System.out.println("-----------------------------------------------------------");
 
 
@@ -55,7 +56,7 @@ public class SeguroSaudeTeste {
         doencasPreexistentesGabrielBarbosa.add(DoencasPreexistentes.NEUROLOGICOS);
         doencasPreexistentesGabrielBarbosa.add(DoencasPreexistentes.GASTROINTESTINAIS);
         doencasPreexistentesGabrielBarbosa.add(DoencasPreexistentes.PSIQUIATRICOS);
-        doencasPreexistentesGabrielBarbosa.add(DoencasPreexistentes.IMUNOLOGICOS);
+
 
         SeguroSaude seguroSaude_02 = new SeguroSaude(seguradoGabrielBarbosaTeste_02.getNome(),
                 false,
@@ -68,32 +69,37 @@ public class SeguroSaudeTeste {
                 doencasPreexistentesGabrielBarbosa);
 
 
-        System.out.println(validadorSeguroSaude(seguroSaude_02,seguradoGabrielBarbosaTeste_02));
+        Mensalidade mensalidadeSeguradoGabrielBarbosaTeste_02 = seguroSaude_02.calcularMensalidade(valorBaseMensalidadeSeguroSaude);
+        System.out.println("FEATURE_02: O valor da mensalidade 02 de Seguro Saude será: " + mensalidadeSeguradoGabrielBarbosaTeste_02.getValorMensalidade());
         System.out.println("-----------------------------------------------------------");
 
 
 
         System.out.println("### Teste Instancia 03 ###");
-        Segurado seguradoArthurAntunesTeste_03 = new Segurado("Arthur Antunes Zico",70,"24808052");
-        List<DoencasPreexistentes> doencasPreexistentesArthurAntunes = new ArrayList<>();
-        doencasPreexistentesArthurAntunes.add(DoencasPreexistentes.NEUROLOGICOS);
-        doencasPreexistentesArthurAntunes.add(DoencasPreexistentes.GASTROINTESTINAIS);
-        doencasPreexistentesArthurAntunes.add(DoencasPreexistentes.PSIQUIATRICOS);
+        Segurado seguradoMariaDasDoresTeste_03 = new Segurado("Maria das Dores",70,"24808052");
+        List<DoencasPreexistentes> doencasPreexistentesMariaDasDores = new ArrayList<>();
+        doencasPreexistentesMariaDasDores.add(DoencasPreexistentes.NEUROLOGICOS);
+        doencasPreexistentesMariaDasDores.add(DoencasPreexistentes.GASTROINTESTINAIS);
+        doencasPreexistentesMariaDasDores.add(DoencasPreexistentes.PSIQUIATRICOS);
+        doencasPreexistentesMariaDasDores.add(DoencasPreexistentes.GENETICOS);
+        doencasPreexistentesMariaDasDores.add(DoencasPreexistentes.INFECCIOSOS);
 
-        SeguroSaude seguroSaude_03 = new SeguroSaude(seguradoArthurAntunesTeste_03.getNome(),
+        SeguroSaude seguroSaude_03 = new SeguroSaude(seguradoMariaDasDoresTeste_03.getNome(),
                 false,
                 LocalDateTime.now().plusMonths(3),
                 Optional.of(LocalDateTime.now().plusMonths(15)),
-                seguradoArthurAntunesTeste_03.getIdade(),
-                Sexo.MASCULINO,
+                seguradoMariaDasDoresTeste_03.getIdade(),
+                Sexo.FEMININO,
                 ModalidadeSeguroSaude.REEMBOLSO,
                 PeriodoCarencia.ANUAL,
-                doencasPreexistentesArthurAntunes);
+                doencasPreexistentesMariaDasDores);
 
 
-        System.out.println(validadorSeguroSaude(seguroSaude_03,seguradoArthurAntunesTeste_03));
+        Mensalidade mensalidadeSeguradoMariaDasDoresTeste_03 = seguroSaude_03.calcularMensalidade(valorBaseMensalidadeSeguroSaude);
+        System.out.println("FEATURE_02: O valor da mensalidade 03 de Seguro Saude será: " + mensalidadeSeguradoMariaDasDoresTeste_03.getValorMensalidade());
         System.out.println("-----------------------------------------------------------");
 
 
     }
+
 }
