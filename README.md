@@ -42,9 +42,21 @@ Crie um projeto que organize as regras de negócio em seis classes da seguinte m
 
 **Branch "feature-02"**
 
-- É necessário criar um método abstrato na classe mãe.
+- É necessário criar um método abstrato na classe mãe. 
+>     public abstract class Seguro {
+>  
+>     //Atributos...
+>   
+>      public abstract Mensalidade calcularMensalidade(BigDecimal valorBase);
+>   
+>     //Getters, toString()...
+> 
+>     }
+
+
 - Cada filha precisa implementar diferentemente o método abstrato.
 
+  ![Instruções Feature 01 Java Seguros](/imagens/diagramaFeature_02.png)
 
 
 **Branch "feature-03"**
