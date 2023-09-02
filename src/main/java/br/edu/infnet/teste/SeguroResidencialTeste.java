@@ -1,4 +1,4 @@
-package br.edu.infnet.modelo.teste;
+package br.edu.infnet.teste;
 
 import br.edu.infnet.modelo.dominio.Segurado;
 import br.edu.infnet.modelo.dominio.SeguroResidencial;

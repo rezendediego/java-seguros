@@ -1,4 +1,4 @@
-package br.edu.infnet.modelo.teste;
+package br.edu.infnet.teste;
 
 import br.edu.infnet.modelo.dominio.*;
 import br.edu.infnet.modelo.dominio_enum.*;
@@ -19,7 +19,6 @@ public class PropostaContratoTeste {
         try{
             assertNotNull(propostaContrato.getIdContrato());
             assertEquals(seguro.getNomeSegurado(),propostaContrato.getSegurado().getNome());
-            assertEquals(propostaContrato.getSeguro().getTipoSeguro(), seguro.getTipoSeguro());
         }catch(AssertionError assertionError){
             System.out.println(">>>AssertionError: Revise a proposta de Contrato: " + assertionError.getMessage());
         }
@@ -44,7 +43,8 @@ public class PropostaContratoTeste {
         PropostaContrato propostaContrato_01 = new PropostaContrato(
                 seguroVidaJoseSilva.getInicio(),
                 seguradoJoseTeste_01,
-                seguroVidaJoseSilva);
+                TempoContrato.SEMESTRAL,
+                Arrays.asList(seguroVidaJoseSilva));
 
         System.out.println(validadorProposta(propostaContrato_01, seguroVidaJoseSilva));
         System.out.println("-----------------------------------------------------------");
@@ -74,7 +74,8 @@ public class PropostaContratoTeste {
         PropostaContrato propostaContrato_02 = new PropostaContrato(
                seguroSaudeMariaSantos.getInicio(),
                 seguradoMariaTeste_02,
-                seguroSaudeMariaSantos);
+                TempoContrato.TRIMESTRAL,
+                Arrays.asList(seguroSaudeMariaSantos));
 
         System.out.println(validadorProposta(propostaContrato_02, seguroSaudeMariaSantos));
         System.out.println("-----------------------------------------------------------");
@@ -96,7 +97,8 @@ public class PropostaContratoTeste {
         PropostaContrato propostaContrato_03 = new PropostaContrato(
                 seguroResidencialTiquinhoSoares.getInicio(),
                 seguradoTiquinhoSoaresTeste_03,
-                seguroResidencialTiquinhoSoares);
+                TempoContrato.ANUAL,
+                Arrays.asList(seguroResidencialTiquinhoSoares));
 
         System.out.println(validadorProposta(propostaContrato_03, seguroResidencialTiquinhoSoares));
         System.out.println("-----------------------------------------------------------");
