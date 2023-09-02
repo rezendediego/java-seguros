@@ -56,14 +56,26 @@ Crie um projeto que organize as regras de negócio em seis classes da seguinte m
 
 - Cada filha precisa implementar diferentemente o método abstrato.
 
-  ![Instruções Feature 01 Java Seguros](/imagens/diagramaFeature_02.png)
+  ![Instruções Feature 02 Java Seguros](/imagens/diagramaFeature_02.png)
 
 
 **Branch "feature-03"**
 
-- Criação de um atributo do tipo vetor.
+- Criação de um atributo do tipo Vetor.
 - Criação de um atributo do tipo Set.
 - Criação do relacionamento entre a classe principal e a mãe com List.
+
+Diagrama UML da Feature 03
+![Instruções Feature 03 Java Seguros](/imagens/diagramaFeature_03.png)
+
+Feature 03.1: Criar um atributo tipo Vetor
+![Instruções Feature 03.01 Java Seguros](/imagens/Feature-03_1_Vetor_dentro_MensalidadesPagas.png)
+
+Feature 03.2: Criar um atributo do tipo Set
+![Instruções Feature 03.02 Java Seguros](/imagens/Feature-03_2_Set_dentro_ContratoFirmadoRepository.png)
+
+Feature 03.3: Criar relacionamento entre a classe principal e a mãe com List
+![Instruções Feature 03.03 Java Seguros](/imagens/Feature-03_3_List_de_Seguro_dentro_PropostaContrato.png)
 
 
 **Branch "feature-04"**
