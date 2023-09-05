@@ -1,6 +1,9 @@
 package br.edu.infnet.modelo.dominio;
 
+import br.edu.infnet.excecao.SeguroNaoDisponivelException;
 import br.edu.infnet.modelo.dominio_enum.*;
+import br.edu.infnet.utilitarios.validacao.ValidadorDisponibilidadeSeguroSaude;
+
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -70,6 +73,12 @@ public class SeguroSaude extends Seguro{
         return doencasPreexistentes;
     }
 
+    //Feature 04.2 Cada classe de negócio deve usar uma classe de exception.
+    public Boolean modSaudeEstaDisponivel(ValidadorDisponibilidadeSeguroSaude validadorDisponibilidadeSeguroSaude) throws SeguroNaoDisponivelException{
+        if(!validadorDisponibilidadeSeguroSaude.getDisponibilidade()){
+            throw new SeguroNaoDisponivelException("EXCEPTION_SEGURO_NAO_DISPONIVEL: A modalidade Seguro Saude Nao está disponível");
+        }else return true;
+    }
 
     @Override
     public Mensalidade calcularMensalidade(BigDecimal valorBase) {
@@ -94,6 +103,7 @@ public class SeguroSaude extends Seguro{
         BigDecimal porcentagem = new BigDecimal(doencasPreexistentes.size() * 5);
         return mensalidade.getValorBase().multiply(porcentagem).divide(new BigDecimal("100"), RoundingMode.CEILING);
     }
+
 
     @Override
     public String toString() {

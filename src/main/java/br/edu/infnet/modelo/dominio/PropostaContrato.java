@@ -1,6 +1,8 @@
 package br.edu.infnet.modelo.dominio;
 
+import br.edu.infnet.excecao.SeguradoInadimplenteException;
 import br.edu.infnet.modelo.dominio_enum.TempoContrato;
+import br.edu.infnet.utilitarios.validacao.ValidadorPermissaoSeguradoFirmarContrato;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -45,6 +47,13 @@ public class PropostaContrato {
 
     public List<Seguro> getListaSeguro() {
         return listaSeguro;
+    }
+
+    //Feature 04.2 Cada classe de negócio deve usar uma classe de exception.
+    public Boolean seguradoEstaInadimplente(ValidadorPermissaoSeguradoFirmarContrato validadorPermissaoSeguradoFirmarContrato) throws SeguradoInadimplenteException{
+        if(validadorPermissaoSeguradoFirmarContrato.getSeguradoInadimplentePorId(this.segurado.getId())){
+            throw new SeguradoInadimplenteException("EXCEPTION_SEGURADO_INADIMPLENTE: O Segurado nao pode firmar um contrato de seguro porque está inadimplente");
+        }else return true;
     }
 
     @Override

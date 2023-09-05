@@ -1,7 +1,9 @@
 package br.edu.infnet.modelo.dominio;
 
+import br.edu.infnet.excecao.SeguroNaoDisponivelException;
 import br.edu.infnet.modelo.dominio_enum.TipoImovel;
 import br.edu.infnet.modelo.dominio_enum.TipoSeguro;
+import br.edu.infnet.utilitarios.validacao.ValidadorDisponibilidadeSeguroResidencial;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -50,6 +52,14 @@ public class SeguroResidencial extends Seguro{
 
     public BigDecimal getValorIndenizacao() {
         return valorIndenizacao;
+    }
+
+
+    //Feature 04.2 Cada classe de negócio deve usar uma classe de exception.
+    public Boolean modResidencialEstaDisponivel(ValidadorDisponibilidadeSeguroResidencial validadorDisponibilidadeSeguroResidencial) throws SeguroNaoDisponivelException {
+        if(!validadorDisponibilidadeSeguroResidencial.getDisponibilidade()){
+            throw new SeguroNaoDisponivelException("EXCEPTION_SEGURO_NAO_DISPONIVEL: A modalidade Seguro Residencial Nao está disponível");
+        }else return true;
     }
 
 

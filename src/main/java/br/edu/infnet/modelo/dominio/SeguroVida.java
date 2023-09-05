@@ -1,7 +1,9 @@
 package br.edu.infnet.modelo.dominio;
 
+import br.edu.infnet.excecao.SeguroNaoDisponivelException;
 import br.edu.infnet.modelo.dominio_enum.Sexo;
 import br.edu.infnet.modelo.dominio_enum.TipoSeguro;
+import br.edu.infnet.utilitarios.validacao.ValidadorDisponibilidadeSeguroVida;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -58,6 +60,15 @@ public class SeguroVida extends Seguro{
     public BigDecimal getCapitalSegurado() {
         return capitalSegurado;
     }
+
+
+    //Feature 04.2 Cada classe de negócio deve usar uma classe de exception.
+    public Boolean modVidaEstaDisponivel(ValidadorDisponibilidadeSeguroVida validadorDisponibilidadeSeguroVida) throws SeguroNaoDisponivelException {
+        if(!validadorDisponibilidadeSeguroVida.getDisponibilidade()){
+            throw new SeguroNaoDisponivelException("EXCEPTION_SEGURO_NAO_DISPONIVEL: A modalidade Seguro Vida Nao está disponível");
+        }else return true;
+    }
+
 
     @Override
     public Mensalidade calcularMensalidade(BigDecimal valorBase) {
