@@ -9,6 +9,7 @@
 > - O branch main possui as instruções seguidas por soluções descritas em UML. 
 > 
 > - A implementação de cada solução está no seu próprio branch
+> - Classes de Teste no package teste.
  
 **Instruções Iniciais:**
 
@@ -28,6 +29,7 @@ Crie um projeto que organize as regras de negócio em seis classes da seguinte m
 ![Instruções Iniciais Java Seguros](/imagens/diagramaInicial.png)
 
 
+-----------------------------------------------
 **Branch "feature-01"**
 
 - Todas as classes precisam ter pelo menos três atributos e todos os tipos de dados precisam ser utilizados em pelo menos uma ocorrência.
@@ -37,9 +39,14 @@ Crie um projeto que organize as regras de negócio em seis classes da seguinte m
 
 ![Instruções Feature 01 Java Seguros](/imagens/diagramaFeature_01.png)
 
+_Classes de Teste feature-01:_
+- PropostaContratoTeste
+- Segurado Teste
+- SeguroResidencialTeste
+- SeguroSaudeTeste
+- SeguroVidaTeste
 
-
-
+-----------------------------------------------
 **Branch "feature-02"**
 
 - É necessário criar um método abstrato na classe mãe. 
@@ -58,7 +65,12 @@ Crie um projeto que organize as regras de negócio em seis classes da seguinte m
 
   ![Instruções Feature 02 Java Seguros](/imagens/diagramaFeature_02.png)
 
+_Classes de Teste feature-02:_
+- FeatureDoisSeguroResidencialTeste
+- FeatureDoisSeguroSaudeTeste
+- FeatureDoisSeguroVidaTeste
 
+-----------------------------------------------
 **Branch "feature-03"**
 
 - Criação de um atributo do tipo Vetor.
@@ -77,10 +89,30 @@ Feature 03.2: Criar um atributo do tipo Set
 Feature 03.3: Criar relacionamento entre a classe principal e a mãe com List
 ![Instruções Feature 03.03 Java Seguros](/imagens/Feature-03_3_List_de_Seguro_dentro_PropostaContrato.png)
 
+_Classes de Teste feature-03:_
+- FeatureTresTeste
 
+-----------------------------------------------
 **Branch "feature-04"**
 
 - Criação de classes de exceptions para tratar regras de negócio.
 - Cada classe de negócio deve usar uma classe de exception.
 - Fazer a leitura de um arquivo texto com o layout definido pelo aluno.
 - Um arquivo texto deve ser gerado com um layout diferente da entrada.
+
+Feature 04.1: Criação de classes de exceptions para tratar regras de negócio.
+![Instruções Feature 04.01 Java Seguros](/imagens/Feature-04_1_Classes_Exception.png)
+
+Feature 04.2: Cada classe de negócio deve usar uma classe de exception.
+![Instruções Feature 04.02 Java Seguros](/imagens/Feature-04_2a_Diagrama_UML_Classe_Execao_Metodo.png)
+
+Tabela Classes, Exception e Metodo
+![Instruções Feature 04.02 Java Seguros](/imagens/Feature-04_2b_Tabela_Classe_Execao_Metodo.png)
+
+Feature 04.3: Fazer a leitura de um arquivo texto com o layout definido pelo aluno.
+Feature 04.4: Um arquivo texto deve ser gerado com um layout diferente da entrada.
+![Instruções Feature 04.03_e_04 Java Seguros](/imagens/diagramaFeature_04.3_04.4.png)
+
+_Classes de Teste feature-04:_
+- FeatureQuatro ArquivoTeste
+- FeatureQuatroExceptionTeste
